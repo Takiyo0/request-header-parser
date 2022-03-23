@@ -1,7 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
-app.set("trust proxy", true)
+app.use(cors({origin: ["*", "https://www.freecodecamp.org"]}));
+app.set("trust proxy", true);
 
 app.get("/", (req, res) => {
     res.json({hello: "world", path: "/api/whoami"});
