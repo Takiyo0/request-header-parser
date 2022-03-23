@@ -9,8 +9,9 @@ app.get("/", (req, res) => {
 
 app.get("/api/whoami", (req, res) => {
     const headers = req.headers;
+  console.log(headers)
     return res.json({
-        ipaddress: headers["x-forwarded-for"] || req.ip || req.socket.remoteAddress || "",
+        ipaddress: (headers["x-forwarded-for"] ? headers["x-forwarded-for"].split(", ")[0] : null) || req.ip || req.socket.remoteAddress || "",
         language: headers["accept-language"],
         software: headers["user-agent"]
     })
